@@ -15,12 +15,14 @@ const tplRoot = './src/tpls/';
 
 // nunjucks env 配置，包括全局变量、filter等
 const njConfig = `${tplRoot}nunjucks.config.js`;
-const tplsPath = `${tplRoot}**/!(_)*.tpl`;
-const dataPath = `${tplRoot}**/!(_)*.tpl`;
+
+const tplExts = 'njk|tpl|html|htm';
+const tplsPath = `${tplRoot}**/!(_)*.+(${tplExts})`;
+const dataPath = `${tplRoot}**/*.data.js`;
 
 gulp.task('default', ['compile-tpls'], function () {
     // return watch({glob: './src/tpls/**/!(_)*.tpl'})
-    return watch([tplsPath, `${tplRoot}**/*.data.js`], function () {
+    return watch([tplsPath, dataPath], function () {
         gulp.start('compile-tpls')
     })
 });
