@@ -4,29 +4,39 @@ const gulp = require('gulp');
 const gulpData = require('gulp-data');
 const watch = require('gulp-watch');
 const rename = require('gulp-rename');
-const nunjucks = require('gulp-nunjucks');
+
+const nunjucks = require('gulp-nunjucks-render');
+// const nunjucks = require('gulp-nunjucks');
 
 
 const plumber = require('gulp-plumber');
 
 const tplRoot = './src/tpls/';
 
-const tplPath = `${tplRoot}**/!(_)*.tpl`;
+// nunjucks env 配置，包括全局变量、filter等
+const njConfig = `${tplRoot}nunjucks.config.js`;
+const tplsPath = `${tplRoot}**/!(_)*.tpl`;
 const dataPath = `${tplRoot}**/!(_)*.tpl`;
 
 gulp.task('default', ['compile-tpls'], function () {
     // return watch({glob: './src/tpls/**/!(_)*.tpl'})
-    return watch([tplPath, `${tplRoot}**/*.data.js`], function () {
+    return watch([tplsPath, `${tplRoot}**/*.data.js`], function () {
         gulp.start('compile-tpls')
     })
 });
+
+
 gulp.task('compile-tpls', () =>
-    gulp.src(tplPath)
+    gulp.src(tplsPath)
         .pipe(plumber({
             errorHandler: err => console.log(err)
         }))
         .pipe( gulpData( getData) )
-        .pipe( nunjucks.compile() )
+        // .pipe( nunjucks.compile() )
+        .pipe( nunjucks({
+            path: tplRoot,
+            manageEnv: require(njConfig)
+        }) )
         .pipe( rename({
             extname: '.html'
         }) )
