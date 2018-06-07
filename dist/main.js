@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		1: 0
+/******/ 		2: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -170,8 +170,12 @@ var obj = {
 };
 console.log(Object.assign(_dataConfig2.default, obj));
 
-__webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 3)).then(function (data) {
+__webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 3)).then(function (data) {
     console.log(data);
+});
+
+__webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 4)).then(function (fn) {
+    return fn(1, 2, 3);
 });
 
 /***/ }),

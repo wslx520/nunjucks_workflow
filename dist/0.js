@@ -1,13 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = {
-    msg: 'I wont tell you'
+module.exports = function (a, b, c) {
+    console.log(a, b, c);
+    return a + b + c;
 };
 
 /***/ })
