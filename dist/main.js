@@ -154,44 +154,35 @@ module.exports = __webpack_require__(1);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dataConfig__ = __webpack_require__(2);
 
 
-var _dataConfig = __webpack_require__(2);
-
-var _dataConfig2 = _interopRequireDefault(_dataConfig);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var obj = {
+const obj = {
     gender: 'Male'
-};
-console.log(Object.assign(_dataConfig2.default, obj));
+}
+console.log(Object.assign(__WEBPACK_IMPORTED_MODULE_0__dataConfig__["a" /* default */], obj));
 
-__webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 3)).then(function (data) {
+__webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 3)).then((data) => {
     console.log(data);
 });
 
-__webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 4)).then(function (fn) {
-    return fn(1, 2, 3);
-});
+__webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 4)).then(fn => {
+    return fn(1,2,3);
+})
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
+/* harmony default export */ __webpack_exports__["a"] = ({
     name: 'Johnson',
     email: 'johnson@gmail.com'
-};
+});
 
 /***/ })
 /******/ ]);

@@ -9,6 +9,6 @@ import('./asyncPart').then((data) => {
     console.log(data);
 });
 
-import('../sum/sum').then(fn => {
+import(/* webpackChunkName: 'sum' */'../sum/sum').then(fn => {
     return fn(1,2,3);
 })

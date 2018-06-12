@@ -9,20 +9,20 @@ module.exports = {
         path: path.resolve('./dist'),
         filename: '[name].js'
     },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['env'],
-                        plugins: ["syntax-dynamic-import"]
-                    }
-                }
-            }
-        ]
-    },
+    // module: {
+    //     rules: [
+    //         {
+    //             test: /\.js$/,
+    //             use: {
+    //                 loader: 'babel-loader',
+    //                 options: {
+    //                     presets: ['env'],
+    //                     plugins: ["syntax-dynamic-import"]
+    //                 }
+    //             }
+    //         }
+    //     ]
+    // },
     resolve: {
         alias: {
             '~': path.resolve('./src')
