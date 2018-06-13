@@ -5,11 +5,13 @@ class NjkGenerator {
 
     }
     apply(compiler) {
+        console.log(Object.keys(compiler.hooks));
         compiler.hooks.done.tapAsync(NAME, (stats, callback) => {
-            const {compilation} = stats;
+            let {compilation} = stats;
             console.log(
                  Object.keys(stats),
                 typeof compilation, 
+                Object.keys(compilation),
                 Object.keys(compilation.assets)
             );
             callback();

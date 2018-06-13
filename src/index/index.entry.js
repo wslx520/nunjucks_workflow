@@ -1,5 +1,7 @@
 import dataConfig from './dataConfig'
 
+// 载入模板页面
+import './index.njk';
 const obj = {
     gender: 'Male'
 }

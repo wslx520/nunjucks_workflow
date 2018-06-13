@@ -1,0 +1,11 @@
+{%extends '_layout.njk'%}
+
+{%block head%}
+<title>MemberCenter</title>
+{%endblock%}
+{%block body%}
+{%import 'Promotion/_macros.njk' as mc%}
+{{mc.nav('home')}}
+<hr>
+<script src="js/MemberCenter.js"></script>
+{%endblock%}

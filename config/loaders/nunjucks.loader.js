@@ -16,13 +16,13 @@ const njkLoader = function (file) {
 	const currentPath = this.resourcePath;
 	let all = Object.keys(this);
 	const relativePath = path.relative(viewRoot, currentPath);
-	console.log(currentPath, relativePath);
-	console.log('ooooooooooo',options);
+	// console.log(currentPath, relativePath);
+	// console.log('ooooooooooo',options);
 	const str = nunjucks.render(relativePath, {name:'test'});
-	console.log(str, path.basename(relativePath, path.extname(relativePath)));
-	this.emitFile(path.basename(relativePath, path.extname(relativePath)) + '.html', str);
+	// console.log(str, path.basename(relativePath, path.extname(relativePath)));
+	this.emitFile(path.dirname(relativePath, path.extname(relativePath)) + '.html', str);
 	return '';
-	// this.callback(null, nunjucks.render(relativePath, {name:'test'}) ) 
+	this.callback(null, nunjucks.render(relativePath, {name:'test'}) ) 
 }
 
 module.exports = njkLoader;

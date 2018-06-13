@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{6:function(o,n,s){"use strict";o.exports={msg:"I wont tell you"}}}]);
