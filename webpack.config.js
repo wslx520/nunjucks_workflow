@@ -1,6 +1,6 @@
 const glob = require('fast-glob')
 const path = require('path')
-const NJK_FS = require('./config/plugins/nunjucks.fs');
+const NJK_FS = require('./config/plugins/nunjucks.plugin');
 
 const root = path.resolve('./');
 const src = path.resolve('./src');

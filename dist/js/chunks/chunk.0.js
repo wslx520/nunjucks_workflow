@@ -1,1 +1,20 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{5:function(e,n,o){"use strict";Object.defineProperty(n,"__esModule",{value:!0}),n.default=function(e,n,o){return console.log(e,n,o),e+n+o}}}]);
+webpackJsonp([0],{
+
+/***/ 4:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (a, b, c) {
+    console.log(a, b, c);
+    return a + b + c;
+};
+
+/***/ })
+
+});
