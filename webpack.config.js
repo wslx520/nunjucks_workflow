@@ -17,13 +17,14 @@ module.exports = {
             // console.log('finalPath', finalPath)
             entries[finalPath] = filePath;
         })
-        console.log(entries);
+        // console.log(entries);
         return resolve(entries);
     }),
     output: {
         path: path.resolve('./dist'),
         filename: 'js/[name].js',
-        chunkFilename: 'js/chunks/chunk.[id].js'
+        chunkFilename: 'js/chunks/chunk.[id].js',
+        publicPath: '/dist/'
     },
     module: {
         rules: [

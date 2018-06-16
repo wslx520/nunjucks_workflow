@@ -6,23 +6,31 @@ let hasSet = false;
 let viewRoot = null;
 const njkLoader = function (file) {
 	const options = loaderUtils.getOptions(this);
-
+	const self = this;
 	if (!hasSet) {
 		nunjucks.configure(options.views, options);
 		viewRoot = options.views;
 		hasSet = true;
 	}
 	this.cacheable();
+	var callback = this.async();
 	const currentPath = this.resourcePath;
 	let all = Object.keys(this);
 	const relativePath = path.relative(viewRoot, currentPath);
 	// console.log(currentPath, relativePath);
 	// console.log('ooooooooooo',options);
-	const str = nunjucks.render(relativePath, {name:'test'});
+	nunjucks.render(relativePath, {name:'test'}, function (err, res) {
+		if (err) {
+			// console.error(err);
+			return callback(err);
+		}
+		self.emitFile(path.dirname(relativePath, path.extname(relativePath)) + '.html', res);
+		callback(null, '');
+	});
 	// console.log(str, path.basename(relativePath, path.extname(relativePath)));
-	this.emitFile(path.dirname(relativePath, path.extname(relativePath)) + '.html', str);
-	return '';
-	this.callback(null, nunjucks.render(relativePath, {name:'test'}) ) 
+	
+	// return '';
+	// this.callback(null, nunjucks.render(relativePath, {name:'test'}) ) 
 }
 
 module.exports = njkLoader;
