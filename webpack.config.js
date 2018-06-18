@@ -1,7 +1,8 @@
 const glob = require('fast-glob')
 const path = require('path')
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const NJK_FS = require('./config/plugins/nunjucks.plugin');
-
 const root = path.resolve('./');
 const src = path.resolve('./src');
 module.exports = {
@@ -49,6 +50,13 @@ module.exports = {
                     }
                 ]
                 
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
+                })
             }
         ]
     },
@@ -61,6 +69,7 @@ module.exports = {
         new NJK_FS({output: {
             path: './',
             extension: '.html'
-        }})
+        }}),
+        new ExtractTextPlugin('css/styles.css'),
     ],
 }
