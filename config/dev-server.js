@@ -7,6 +7,8 @@ const app = express();
 
 app.use(middleware(compiler, {
   // webpack-dev-middleware options
+  contentBase: '/dist/'
 }));
+app.use(require("webpack-hot-middleware")(compiler));
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))

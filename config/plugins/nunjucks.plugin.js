@@ -20,7 +20,7 @@ class NjkGenerator {
                 chunk.forEachModule(function(module) {
                     console.log(Object.keys(module))
                     // Explore each source file path that was included into the module:
-                    module.fileDependencies.forEach(function(filepath) {
+                    module.fileDependencies && module.fileDependencies.forEach(function(filepath) {
                     // we've learned a lot about the source structure now...
                         console.log(filepath);
                     });

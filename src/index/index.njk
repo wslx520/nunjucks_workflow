@@ -1,13 +1,14 @@
 {%extends '_layout.njk'%}
 
 {%block head%}
-<title>Index - {{SITE_NAME}}</title>
+<title>Index - {{G.SITE_NAME}}</title>
 <link rel="stylesheet" href="css/styles.css"/>
 {%endblock%}
 {%block body%}
-{% set now = '2018-8-8' %}
+{% set now = '2018-8-27' %}
 <h1 class="h1">大标题</h1>
 ttt, {{now}} +++
 <hr>
 test .njk
+<script src="js/index.js"></script>
 {%endblock%}

@@ -12,18 +12,20 @@ const njkLoader = function (file) {
 		viewRoot = options.views;
 		hasSet = true;
 	}
+	// 可缓存
 	this.cacheable();
 	var callback = this.async();
 	const currentPath = this.resourcePath;
 	let all = Object.keys(this);
 	const relativePath = path.relative(viewRoot, currentPath);
 	// console.log(currentPath, relativePath);
-	// console.log('ooooooooooo',options);
+	console.log('oooooooooooXXXXXXXXXXXXXXXXXXXXXXXXXXXX00000000000',options);
 	nunjucks.render(relativePath, {name:'test'}, function (err, res) {
 		if (err) {
 			// console.error(err);
 			return callback(err);
 		}
+		console.log(res);
 		self.emitFile(path.dirname(relativePath, path.extname(relativePath)) + '.html', res);
 		callback(null, '');
 	});

@@ -16,8 +16,9 @@ module.exports = {
             // console.log(relativePath);
             let finalPath = path.dirname(relativePath);
             // console.log('finalPath', finalPath)
-            entries[finalPath] = filePath;
-        })
+            entries[finalPath] = [filePath, 'webpack-hot-middleware/client?noInfo=true&reload=true'];
+        });
+        // entries['']
         // console.log(entries);
         return resolve(entries);
     }),
@@ -25,7 +26,7 @@ module.exports = {
         path: path.resolve('./dist'),
         filename: 'js/[name].js',
         chunkFilename: 'js/chunks/chunk.[id].js',
-        publicPath: '/dist/'
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -45,7 +46,9 @@ module.exports = {
                     {
                         loader: path.resolve('./config/loaders/nunjucks.loader.js'),
                         options: {
-                            views: './src'
+                            views: './src',
+                            // 模板变化实时刷新, important for developing
+                            watch: true
                         }
                     }
                 ]
@@ -70,6 +73,7 @@ module.exports = {
             path: './',
             extension: '.html'
         }}),
+        new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin('css/styles.css'),
     ],
 }
