@@ -14,6 +14,7 @@ const njkLoader = function (file) {
 	}
 	// 可缓存
 	this.cacheable();
+	// 异步loader
 	var callback = this.async();
 	const currentPath = this.resourcePath;
 	let all = Object.keys(this);
@@ -25,7 +26,7 @@ const njkLoader = function (file) {
 			// console.error(err);
 			return callback(err);
 		}
-		console.log(res);
+		// console.log(res);
 		self.emitFile(path.dirname(relativePath, path.extname(relativePath)) + '.html', res);
 		callback(null, '');
 	});

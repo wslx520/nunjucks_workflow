@@ -14,11 +14,11 @@ const obj = {
 // });
 
 import(/* webpackChunkName: 'sum' */'../sum/sum').then(res => {
-    if (res['default']) {
-        var fn = res.default;
-        return fn(1,2,3);
-    }
     if (res.html) {
         console.log(res.html);
+    }
+    if (res['default']) {
+        var fn = res.default;
+        return fn(11,2,3);
     }
 })
