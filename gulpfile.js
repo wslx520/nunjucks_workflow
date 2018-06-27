@@ -4,6 +4,10 @@ const gulp = require('gulp');
 const gulpData = require('gulp-data');
 const watch = require('gulp-watch');
 const rename = require('gulp-rename');
+const through2 = require('through2');
+const rev = require('gulp-rev');
+const revCollector = require('gulp-rev-collector');
+// const through2 = require('through2');
 
 const nunjucks = require('gulp-nunjucks-render');
 // const nunjucks = require('gulp-nunjucks');
@@ -68,3 +72,48 @@ function getData(file, cb) {
     })
     return res;
 }
+
+function replaceSuffix() {
+    const pattern =/-[0-9a-f]{8,10}-?\.[^"']*/gmi; //匹配出-7ef5d9ee29.css，用于后面做文章
+    return through2.obj(function(file, encoding, done) {
+        console.log(String(file.contents))
+        let content =String(file.contents).replace(pattern,function(match, pos, origin){
+            console.log('match', match)
+            const pat=/[0-9a-f]{8,10}-?/gi;  //匹配出7ef5d9ee29，用于后面拼接
+            if(pat.test(match)){
+                console.log(RegExp['$\''],RegExp['$&'])
+                return  RegExp['$\''].concat('?v=', RegExp['$&']);//如果$'和$&这句话看不懂，红宝书第五章正则表达式部分该复习了；
+            }else{
+                return match;
+            }
+        });
+        file.contents = new Buffer(content);
+        this.push(file);
+        done();
+    });
+}
+// gulp.task('cls',function () {
+//     return gulp.src([
+//         'dist'
+//     ]).pipe(clean());
+// });
+
+gulp.task('revC',function(){
+    return gulp.src('dist/css/*.css')
+    .pipe(rev())
+    .pipe(rev.manifest({merge:true}))
+    .pipe(replaceSuffix())  //利用上面写的方法替换得到类似index.css?v=7ef5d9ee29的样式
+    .pipe(gulp.dest('dist'));
+});
+gulp.task('update',['revC'],function (cb) {
+    gulp.src(['dist/rev-manifest.json', 'dist/index.html'])
+        .pipe(revCollector({
+            replaceReved: function (basename, ext, versionReg) {
+                return basename + ext + '(' + versionReg + ')+';
+            },
+            revSuffix: '\\?v=[0-9a-f]{8,10}-?'  //利用revCollector的可配置，去满足我们需要的模式；
+        }))
+        // .pipe(rename('index.html'))
+        .pipe(gulp.dest('dist'))
+        .on('end', cb);
+});
